@@ -1,0 +1,226 @@
+{% extends 'blog/base1.html' %}
+
+{% load static %}
+
+{% block content %}
+    
+<header class="header">
+    <!-- Main Navbar-->
+    <nav class="navbar navbar-expand-lg">
+      <div class="search-area">
+        <div class="search-area-inner d-flex align-items-center justify-content-center">
+          <div class="close-btn"><i class="icon-close"></i></div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+              
+                <div class="form-group">
+                  <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                    <input type="search" name="search" placeholder="What are you looking for?">
+                    <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+                  </form>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <!-- Navbar Brand -->
+        <div class="navbar-header d-flex align-items-center justify-content-between">
+          <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
+          <!-- Toggle Button-->
+          <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+        </div>
+        <!-- Navbar Menu -->
+        <div id="navbarcollapse" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'post' %}" class="nav-link ">Blogs</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link ">My Profile</a>
+            </li>
+            <li  class="nav-item">
+              {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-link ">Logout </a>
+              {% else %}
+                <a href="{% url 'login' %}" class="nav-link ">Login</a>
+              {% endif %}
+            </li>
+            <li  class="nav-item">
+              <a class="nav-link "><strong><em> &nbsp; &nbsp; Welcome :  {{ user.get_username }}</strong></em></a>
+            </li>
+          </ul>
+          <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
+          <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
+        </div>
+      </div>
+    </nav>
+</header>
+
+    <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8"> 
+        <div class="container">
+          <div class="row">
+              
+            <!-- post -->
+                {% for post in posts %}
+                  <div class="post col-xl-6">
+                    <div class="post-thumbnail">
+                        <a href="{{ post.get_absolute_url }}">
+                            {% if post.image %} 
+                                <!-- <img src="{{ post.image.url }}" alt="blog image" class="img-fluid">-->
+                                <img src="{{ post.image.url }}" alt="blog image" class="img-fluid" style="height: 250px; width: 300px;">
+                            {% else %}
+                                <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="blog image" class="img-fluid" style="height: 250px; width: 300px;">
+                                <!-- <img src="data:image/png;base64,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" alt="blog image" class="img-fluid"> -->
+                            {% endif %}
+                        </a>
+                    </div>
+
+                      <div class="post-details">
+                        <div class="post-meta d-flex justify-content-between">
+                            <div class="date meta-last">{{ post.date }}</div>
+                            <div class="category">
+                              {% for cat in post.category_count %}
+                                <a href="#">{{ cat.category__name }}</a>
+                              {% endfor %}
+                            </div>
+                        </div>
+                        <a href="{{ post.get_absolute_url }}">
+                            <h3 class="h4">{{post.title|truncatechars:20}}</h3>
+                        </a>
+                        <p class="text-muted">For more details about "{{post.title}}" post click to image we will redirect  you to deatils page of post....  </p>
+                        <div class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                            
+                            <div class="avatar">
+                                {% if post.author.profile.image %}
+                                    <img src="{{post.author.profile.image.url}}" alt="user image" class="img-fluid">
+                                {% else %}
+                                    <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt="user image" class="img-fluid">
+                                {% endif %}
+                            </div>
+
+                            <div class="title"><span>{{post.author}}</span></div></a>
+                            <div class="date"><i class="icon-clock"></i> {{ post.date|timesince }} ago</div>
+                            <!-- <div class="comments meta-last"><i class="icon-comment"></i>12</div> -->
+                        </div>
+                      </div>
+                  </div>
+                {% endfor %}
+          </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pagination-template d-flex justify-content-center">
+
+                <!-- <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li> -->
+                {% if page_obj.has_previous %}
+                  <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                {% endif %}
+
+                <li class="page-item"><a href="?page={{ page_obj.number }}" class="page-link active">{{ page_obj.number }}</a></li>
+
+                {% if page_obj.has_next %}
+                  <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                {% endif %}
+
+              </ul>
+            </nav>
+        </div>
+        </main>
+        <aside class="col-lg-4">
+
+          <!-- Widget [Search Bar Widget]-->
+          <div class="widget search">
+            <header>
+              <h3 class="h6">Search the blog</h3>
+            </header>
+            <div class="form-group">
+              <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                <input type="search" name="search" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+              </form>
+            </div>
+            <!-- <form  name="Searchform" method="GET" action="{% url 'search' %}"> 
+              <input class= "serch_btn" type="text" name="search" placeholder="    Search" />
+              <button class =serch_bt type = 'submit' value="search">search</button>
+            </form> -->
+
+          </div>
+
+          <!-- Widget [Latest Posts Widget]        -->
+          <div class="widget latest-posts">
+            <header>
+              <h3 class="h6">Latest Posts</h3>
+            </header>
+            <div class="blog-posts">
+                {% for post in most_recent %}
+                    <a href="{{ post.get_absolute_url }}">
+                    <div class="item d-flex align-items-center">
+                        <div class="image">
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
+                            {% else %}
+                                <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
+                            {% endif %}
+                        </div>
+                    <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
+                        <div class="d-flex align-items-center">
+                        <div class="views"><i class="icon-eye"></i> 500</div>
+                        <div class="comments"><i class="icon-comment"></i>12</div>
+                        </div>
+                    </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+          </div>
+
+          <!-- Widget [Tags Cloud Widget]-->
+          <div class="widget tags">       
+            <header>
+              <h3 class="h6">Tags</h3>
+            </header>
+            <ul class="list-inline">
+              {% for cat in categories %}
+                <li class="list-inline-item"><a href="{% url 'cat-page' cat.slug %}" class="tag">#{{ cat.name }}</a></li>
+              {% endfor %}
+              <!-- <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li> -->
+            </ul>
+          </div>
+
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="h6">Categories</h3>
+            </header>
+            {% for cat in category_count %}
+              <div class="item d-flex justify-content-between">
+                <span>{{ cat.category__name }}</span><span>{{ cat.category__name__count }}</span>
+              </div>
+            {% endfor %}
+            
+            <!-- <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div> -->
+            
+          </div>
+          
+        </aside>
+      </div>
+    </div>
+    
+  {% endblock content %}
+    
+  

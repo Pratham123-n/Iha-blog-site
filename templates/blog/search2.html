@@ -1,0 +1,242 @@
+{% extends 'blog/base1.html' %}
+
+{% load static %}
+
+{% block content %}
+    
+<header class="header">
+    <!-- Main Navbar-->
+    <nav class="navbar navbar-expand-lg">
+      <div class="search-area">
+        <div class="search-area-inner d-flex align-items-center justify-content-center">
+          <div class="close-btn"><i class="icon-close"></i></div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+              
+                <div class="form-group">
+                  <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                    <input type="search" name="search" placeholder="What are you looking for?">
+                    <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+                  </form>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <!-- Navbar Brand -->
+        <div class="navbar-header d-flex align-items-center justify-content-between">
+          <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
+          <!-- Toggle Button-->
+          <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+        </div>
+        <!-- Navbar Menu -->
+        <div id="navbarcollapse" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'post' %}" class="nav-link ">Blogs</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link ">My Profile</a>
+            </li>
+            <li  class="nav-item">
+              {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-link ">Logout </a>
+              {% else %}
+                <a href="{% url 'login' %}" class="nav-link ">Login</a>
+              {% endif %}
+            </li>
+            <li  class="nav-item">
+              <a class="nav-link "><strong><em> &nbsp; &nbsp; Welcome :  {{ user.get_username }}</strong></em></a>
+            </li>
+          </ul>
+          <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
+          <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        
+        <main class="posts-listing col-lg-8"> 
+        <div class="container">
+        <div id= "all_btn">
+            <a  href= "{% url 'post'  %}" style='text-decoration: none;'><div class= "btn">Back</div></a><br>
+            <hr>
+            <style>
+              .btn {
+                background-color: #ddd;
+                border: none;
+                color: black;
+                padding: 16px 32px;
+                text-align: center;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition: 0.3s;
+              }
+              
+              .btn:hover {
+                background-color: #3e8e41;
+                color: white;
+              }
+              </style>
+        </div>
+          <div class="row">
+              
+            <!-- post -->
+                {% for post in posts %}
+                  <div class="post col-xl-6">
+                    <div class="post-thumbnail">
+                        <a href="{{ post.get_absolute_url }}">
+                            {% if post.image %} 
+                                <img src="{{ post.image.url }}" alt="blog image" class="img-fluid" style="height: 250px; width: 300px;">
+                            {% else %}
+                                <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="blog image" class="img-fluid" style="height: 250px; width: 300px;">
+                                
+                            {% endif %}
+                        </a>
+                    </div>
+
+                      <div class="post-details">
+                        <div class="post-meta d-flex justify-content-between">
+                            <div class="date meta-last">{{ post.date }}</div>
+                            <div class="category">
+                              
+                            </div>
+                        </div>
+                        <a href="{{ post.get_absolute_url }}">
+                            <h3 class="h4">{{post.title|truncatechars:20}}</h3>
+                        </a>
+                        <p class="text-muted">For more details about "{{post.title}}" post click to image we will redirect  you to deatils page of post....  </p>
+                        <div class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                            
+                            <div class="avatar">
+                                {% if post.author.profile.image %}
+                                    <img src="{{post.author.profile.image.url}}" alt="user image" class="img-fluid">
+                                {% else %}
+                                    <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt="user image" class="img-fluid">
+                                {% endif %}
+                            </div>
+
+                            <div class="title"><span>{{post.author}}</span></div></a>
+                            <div class="date"><i class="icon-clock"></i> {{ post.date|timesince }} ago</div>
+                            
+                        </div>
+                      </div>
+                  </div>
+                {% endfor %}
+          </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pagination-template d-flex justify-content-center">
+
+                <!-- <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li> -->
+                <!-- {% if posts.has_previous %}
+                <li class="page-item"><a href="?{{ page_request_var }}={{ posts.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+                {% endif %}
+                  <li class="page-item"><a href="?{{ page_request_var }}={{ posts.number }}" class="page-link active">{{ posts.number }}</a></li>
+                {% if posts.has_next %}
+                <li class="page-item"><a href="?{{ page_request_var }}={{ posts.next_page_number }}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+                {% endif %} -->
+
+              </ul>
+            </nav>
+        </div>
+        </main>
+        <aside class="col-lg-4">
+
+          <!-- Widget [Search Bar Widget]-->
+          <div class="widget search">
+            <header>
+              <h3 class="h6">Search the blog</h3>
+            </header>
+            <div class="form-group">
+              <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                <input type="search" name="search" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+              </form>
+            </div>
+            <!-- <form  name="Searchform" method="GET" action="{% url 'search' %}"> 
+              <input class= "serch_btn" type="text" name="search" placeholder="    Search" />
+              <button class =serch_bt type = 'submit' value="search">search</button>
+            </form> -->
+
+          </div>
+
+          <!-- Widget [Latest Posts Widget]        -->
+          <div class="widget latest-posts">
+            <header>
+              <h3 class="h6">Latest Posts(search2)</h3>
+            </header>
+            <div class="blog-posts">
+                {% for post in most_recent %}
+                    <a href="{{ post.get_absolute_url }}">
+                    <div class="item d-flex align-items-center">
+                        <div class="image">
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
+                            {% else %}
+                                <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
+                            {% endif %}
+                        </div>
+                    <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
+                        <div class="d-flex align-items-center">
+                        <div class="views"><i class="icon-eye"></i> 500</div>
+                        <div class="comments"><i class="icon-comment"></i>12</div>
+                        </div>
+                    </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+          </div>
+
+          <!-- Widget [Tags Cloud Widget]-->
+          <div class="widget tags">       
+            <header>
+              <h3 class="h6">Tags</h3>
+            </header>
+            <ul class="list-inline">
+              {% for cat in categories %}
+                <li class="list-inline-item"><a href="{% url 'cat-page' cat.slug %}" class="tag">#{{ cat.name }}</a></li>
+              {% endfor %}
+              <!-- <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li> -->
+            </ul>
+          </div>
+
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="h6">Categories</h3>
+            </header>
+            {% for cat in category_count %}
+              <div class="item d-flex justify-content-between">
+                <span>{{ cat.category__name }}</span><span>{{ cat.category__name__count }}</span>
+              </div>
+            {% endfor %}
+            
+            <!-- <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div> -->  
+          </div>
+        </aside>
+      </div>
+    </div>
+    
+  {% endblock content %}
+    
+  

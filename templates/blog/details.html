@@ -1,0 +1,280 @@
+{% extends 'blog/base1.html' %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+    .post-body img{
+        width: 50%;
+        height: 50;
+    }
+    </style>
+
+        <header class="header">
+            <!-- Main Navbar-->
+            <nav class="navbar navbar-expand-lg">
+            <div class="search-area">
+                <div class="search-area-inner d-flex align-items-center justify-content-center">
+                <div class="close-btn"><i class="icon-close"></i></div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8">
+                    
+                        <div class="form-group">
+                        <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                            <input type="search" name="search" placeholder="What are you looking for?">
+                            <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+                        </form>
+                        </div>
+                    
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="container">
+                <!-- Navbar Brand -->
+                <div class="navbar-header d-flex align-items-center justify-content-between">
+                <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
+                <!-- Toggle Button-->
+                <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+                </div>
+                <!-- Navbar Menu -->
+                <div id="navbarcollapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'post' %}" class="nav-link ">Blogs</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link ">My Profile</a>
+                    </li>
+                    <li  class="nav-item">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="nav-link ">Logout </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="nav-link ">Login</a>
+                    {% endif %}
+                    </li>
+                    <li  class="nav-item">
+                    <a class="nav-link "><strong><em> &nbsp; &nbsp; Welcome :  {{ user.get_username }}</strong></em></a>
+                    </li>
+                </ul>
+                <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
+                <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
+                </div>
+            </div>
+            </nav>
+        </header>
+
+    <div class="container">
+        <div class="row">
+        <!-- Latest Posts -->
+        <main class="post blog-post col-lg-8"> 
+            <div class="container">
+            <div class="post-single">
+
+                <div class="post-thumbnail">
+                    {% if posts.image %}   
+                        <img src="{{ posts.image.url }}" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
+                    {% else %}
+                        <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
+                        <!-- <img class= "cardimg" src= "http://127.0.0.1:8000/media/blog/post/WhatsApp_Image_2019-06-19_at_17.55.10.jpeg"/> -->
+                    {% endif %}
+                </div>
+
+                <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                    
+                    <!-- <div class="category">
+                    {% for cat in post.categories.all %}
+                        <a href="#">{{ cat }}</a>
+                    {% endfor %}
+                    </div> -->
+                    <div>
+                        <a  href= "{% url 'edit-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">EDIT POST</div></a><br>
+                        <hr>
+                        <style>
+                        .btn {
+                            background-color: #ddd;
+                            border: none;
+                            color: black;
+                            padding: 16px 32px;
+                            text-align: center;
+                            font-size: 16px;
+                            margin: 4px 2px;
+                            transition: 0.3s;
+                        }
+                        
+                        .btn:hover {
+                            background-color: #3e8e41;
+                            color: white;
+                        }
+                        </style>
+                    </div>
+                    
+                </div>
+                <h1>{{ posts.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                    <div class="avatar"><img src="{{ posts.author.profile.image.url }}" alt="..." class="img-fluid"></div>
+                    <div class="title"><span>{{posts.author}}</span></div></a>
+                    <div class="d-flex align-items-center flex-wrap">       
+                    <div class="date"><i class="icon-clock"></i>{{ posts.date|timesince }} ago</div>
+                    <!-- <div class="views"><i class="icon-eye"></i>{{ post.view_count }}</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div> -->
+                    </div>
+                </div>
+                <div class="post-body">
+                    {{ posts.content|safe }}
+                </div>
+                
+                <!-- <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
+                    
+                    {% if post.previous_post %}
+                    <a href="{{ post.previous_post.get_absolute_url }}" class="prev-post text-left d-flex align-items-center">
+                        <div class="icon prev"><i class="fa fa-angle-left"></i></div>
+                        <div class="text"><strong class="text-primary">Previous Post </strong>
+                        <h6>{{ post.previous_post.title }}</h6>
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% if post.next_post %}
+                    <a href="{{ post.next_post.get_absolute_url }}" class="next-post text-right d-flex align-items-center justify-content-end">
+                        <div class="text"><strong class="text-primary">Next Post </strong>
+                        <h6>{{ post.next_post.title }}</h6>
+                        </div>
+                        <div class="icon next"><i class="fa fa-angle-right">   </i></div>
+                    </a>
+                    {% endif %}
+
+                </div> -->
+                <!-- <div class="post-comments">
+                    <header>
+                    <h3 class="h6">Post Comments<span class="no-of-comments">[{{ post.comments.count }}]</span></h3>
+                    </header>
+                    {% for comment in post.get_comments %}
+                    <div class="comment">
+                        <div class="comment-header d-flex justify-content-between">
+                        <div class="user d-flex align-items-center">
+                            <div class="image">
+                            {% if comment.user.author %}
+                            <img src="{{ comment.user.author.profile_pic.url }}" alt="..." class="img-fluid rounded-circle">
+                            {% else %}
+                            <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
+                            {% endif %}
+                            </div>
+                            <div class="title"><strong>{{ comment.user.username }}</strong><span class="date">{{ comment.timestamp|timesince }} ago</span></div>
+                        </div>
+                        </div>
+                        <div class="comment-body">
+                        <p>{{ comment.content }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div> -->
+                <!-- {% if request.user.is_authenticated %}
+                <div class="add-comment">
+                    <header>
+                    <h3 class="h6">Leave a reply</h3>
+                    </header>
+                    <form method="POST" action="." class="commenting-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                        {{ form }}
+                        </div>
+                        <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-secondary">Submit Comment</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                {% else %}
+                    <a href="{% url 'account_login' %}" class="btn btn-primary">Login to comment</a>
+                {% endif %} -->
+                </div>
+            </div>
+            </div>
+        </main>
+        <aside class="col-lg-4">
+
+            <!-- Widget [Search Bar Widget]-->
+            <div class="widget search">
+              <header>
+                <h3 class="h6">Search the blog</h3>
+              </header>
+              <div class="form-group">
+                <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                  <input type="search" name="search" placeholder="What are you looking for?">
+                  <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+                </form>
+              </div>
+              <!-- <form  name="Searchform" method="GET" action="{% url 'search' %}"> 
+                <input class= "serch_btn" type="text" name="search" placeholder="    Search" />
+                <button class =serch_bt type = 'submit' value="search">search</button>
+              </form> -->
+  
+            </div>
+  
+            <!-- Widget [Latest Posts Widget]        -->
+            <div class="widget latest-posts">
+              <header>
+                <h3 class="h6">Latest Posts</h3>
+              </header>
+              <div class="blog-posts">
+                  {% for post in most_recent %}
+                      <a href="{{ post.get_absolute_url }}">
+                      <div class="item d-flex align-items-center">
+                          <div class="image">
+                              {% if post.image %}
+                                  <img src="{{ post.image.url }}" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
+                              {% else %}
+                                  <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
+                              {% endif %}
+                          </div>
+                      <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
+                          <div class="d-flex align-items-center">
+                          <div class="views"><i class="icon-eye"></i> 500</div>
+                          <div class="comments"><i class="icon-comment"></i>12</div>
+                          </div>
+                      </div>
+                      </div>
+                      </a>
+                  {% endfor %}
+              </div>
+            </div>
+  
+            <!-- Widget [Tags Cloud Widget]-->
+          <div class="widget tags">       
+            <header>
+              <h3 class="h6">Tags</h3>
+            </header>
+            <ul class="list-inline">
+              {% for cat in categories %}
+                <li class="list-inline-item"><a href="{% url 'cat-page' cat.slug %}" class="tag">#{{ cat.name }}</a></li>
+              {% endfor %}
+              <!-- <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li> -->
+            </ul>
+          </div>
+
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="h6">Categories</h3>
+            </header>
+            {% for cat in category_count %}
+              <div class="item d-flex justify-content-between">
+                <span>{{ cat.category__name }}</span><span>{{ cat.category__name__count }}</span>
+              </div>
+            {% endfor %}
+            
+            <!-- <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+            <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div> -->
+            
+          </div>
+        </aside>
+        </div>
+    </div>
+{% endblock content %}
