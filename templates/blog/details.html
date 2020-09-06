@@ -78,6 +78,7 @@
                         <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
                         <!-- <img class= "cardimg" src= "http://127.0.0.1:8000/media/blog/post/WhatsApp_Image_2019-06-19_at_17.55.10.jpeg"/> -->
                     {% endif %}
+                    
                 </div>
 
                 <div class="post-details">
@@ -113,7 +114,14 @@
                 </div>
                 <h1>{{ posts.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{{ posts.author.profile.image.url }}" alt="..." class="img-fluid"></div>
+                    <div class="avatar">
+                        {% if posts.author.profile.image %}
+                            <img src="{{ posts.author.profile.image.url }}" alt="user image" class="img-fluid">
+                        {% else %}
+                            <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt="user image" class="img-fluid">
+                        {% endif %}
+                    </div>
+                    
                     <div class="title"><span>{{posts.author}}</span></div></a>
                     <div class="d-flex align-items-center flex-wrap">       
                     <div class="date"><i class="icon-clock"></i>{{ posts.date|timesince }} ago</div>
