@@ -47,8 +47,28 @@ class post(models.Model):
     def get_absolute_url(self):
         return reverse('detail-page', kwargs={'slug':self.slug})
 
-    # class Meta:
-    #     ordering = ('-date',)
+    @property
+    def get_comments(self):
+        return self.comments.all().order_by('-date')
 
+    @property
+    def view_count(self):
+        return PostView.objects.filter(post2=self).count()
+
+class Comment(models.Model):
+    user = models.ForeignKey(User,on_delete= models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    post2 = models.ForeignKey('post', related_name='comments', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
+class PostView(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post2 = models.ForeignKey('post', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
    
     

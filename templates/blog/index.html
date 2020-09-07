@@ -84,9 +84,9 @@
                         <div class="post-meta d-flex justify-content-between">
                             <div class="date meta-last">{{ post.date }}</div>
                             <div class="category">
-                              {% for cat in post.category_count %}
+                              <!-- {% for cat in post.category_count %} -->
                                 <a href="#">{{ cat.category__name }}</a>
-                              {% endfor %}
+                              <!-- {% endfor %} -->
                             </div>
                         </div>
                         <a href="{{ post.get_absolute_url }}">

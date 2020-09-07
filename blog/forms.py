@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from blog.models import post
+from blog.models import post,Comment
 from accounts.models import User
 from tinymce.widgets import TinyMCE
 
@@ -36,3 +36,13 @@ class Searchform(forms.Form):
     #         raise forms.ValidationError('use low size image', code="invalid")
     #     else:
     #         return image
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'form-control',
+        'placeholder': 'Type your comment',
+        'id': 'usercomment',
+        'rows': '4'
+    }))
+    class Meta:
+        model = Comment
+        fields = ('content', )

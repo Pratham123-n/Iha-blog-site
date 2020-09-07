@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect,reverse
 from django.http import HttpResponse
 from blog.models import post
-from blog.forms import Contactform,Postform,Searchform
+from blog.forms import Contactform,Postform,Searchform,CommentForm
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
 from blog.models import Category
 from accounts.models import User
@@ -51,19 +51,43 @@ class Postlistview(LoginRequiredMixin,ListView):
 #     posts = post.objects.get(id=id)
 #     return render(request,'blog/details.html',context= {'posts':posts})
 
-class Postdetailview(LoginRequiredMixin,DetailView):
-    login_url = 'login'
-    model = post
-    # queryset = post.objects.filter(status="P")
-    template_name = 'blog/details.html'
-    context_object_name = 'posts'
+# class Postdetailview(LoginRequiredMixin,DetailView):
+#     login_url = 'login'
+#     model = post
+#     # queryset = post.objects.filter(status="P")
+#     template_name = 'blog/details.html'
+#     context_object_name = 'posts'
 
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['most_recent'] = post.objects.all().order_by('-date')[:3]
-        context['category_count'] = post.objects.values('category__name').annotate(Count('category__name'))
-        return context
+#     def get_context_data(self,**kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['categories'] = Category.objects.all()
+#         context['most_recent'] = post.objects.all().order_by('-date')[:3]
+#         context['category_count'] = post.objects.values('category__name').annotate(Count('category__name'))
+#         return context
+
+def post_detail(request,slug,*args,**kwargs):
+    category_count = post.objects.values('category__name').annotate(Count('category__name'))
+    most_recent = post.objects.all().order_by('-date')[:3]
+    post2 = get_object_or_404(post,slug=slug)
+    categories = Category.objects.all()
+
+    form = CommentForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post2 = post2
+            form.save()
+            return redirect(reverse("detail-page", kwargs={
+                'slug': post2.slug
+            }))
+    context = {
+        'posts':post2,
+        'most_recent':most_recent,
+        'category_count':category_count,
+        'categories':categories,
+        'form':form,
+    }
+    return render(request,'blog/details.html',context)
 
 # def contact_view(request,*args,**kwargs):
 #     if request.method == "GET":

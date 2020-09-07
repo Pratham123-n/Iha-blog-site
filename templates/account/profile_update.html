@@ -83,6 +83,7 @@
                     {% csrf_token %}
                     {{u_form | crispy}}
                     {{p_form | crispy}}
+                    <p>DOB format:(YYYY-MM-DD)</p>
                     <button type="submit" class="btn btn-success btn-block">Update</button>
                   </form>
                   <hr>
