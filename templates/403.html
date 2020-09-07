@@ -89,71 +89,7 @@
                 <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
               </form>
             </div>
-            <!-- <form  name="Searchform" method="GET" action="{% url 'search' %}"> 
-              <input class= "serch_btn" type="text" name="search" placeholder="    Search" />
-              <button class =serch_bt type = 'submit' value="search">search</button>
-            </form> -->
-
           </div>
-
-          <!-- Widget [Latest Posts Widget]        -->
-          <!-- <div class="widget latest-posts">
-            <header>
-              <h3 class="h6">Latest Posts</h3>
-            </header>
-            <div class="blog-posts">
-                {% for post in most_recent %}
-                    <a href="{{ post.get_absolute_url }}">
-                    <div class="item d-flex align-items-center">
-                        <div class="image">
-                            {% if post.image %}
-                                <img src="{{ post.image.url }}" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
-                            {% else %}
-                                <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 50px; width: 70px;">
-                            {% endif %}
-                        </div>
-                    <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
-                        <div class="d-flex align-items-center">
-                        <div class="views"><i class="icon-eye"></i> 500</div>
-                        <div class="comments"><i class="icon-comment"></i>12</div>
-                        </div>
-                    </div>
-                    </div>
-                    </a>
-                {% endfor %}
-            </div>
-          </div> -->
-
-          <!-- Widget [Categories Widget]-->
-          <!-- <div class="widget categories">
-            <header>
-              <h3 class="h6">Categories</h3>
-            </header>
-            {% for cat in categories %}
-              <div class="item d-flex justify-content-between">
-                <a href="{% url 'cat-page' cat.slug %}">{{ cat.name }}</a><span>12</span>
-              </div>
-            {% endfor %} -->
-            
-            <!-- <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
-            <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
-            <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
-            <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div> -->
-            
-          <!-- </div> -->
-          <!-- Widget [Tags Cloud Widget]-->
-          <!-- <div class="widget tags">       
-            <header>
-              <h3 class="h6">Tags</h3>
-            </header>
-            <ul class="list-inline">
-              <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li>
-            </ul>
-          </div> -->
         </aside>
       </div>
     </div>
