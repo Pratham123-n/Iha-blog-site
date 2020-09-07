@@ -17,6 +17,7 @@ urlpatterns = [
     path('category/<slug:slug>',specific_cat_list_view ,name = 'cat-page'),
     # path('post/<int:id>',edit_post_form_view),
     path('post/<slug:slug>',post_update_view.as_view(),name= 'edit-post'),
+    path('post/<slug:slug>/delete',views.post_delete,name= 'delete-post'),
     path('search',search_view,name='search'),
     # path('<slug:slug>',Postdetailview.as_view(), name= 'detail-page'),
     path('<slug:slug>/',views.post_detail, name= 'detail-page'),

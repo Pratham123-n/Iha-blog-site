@@ -35,7 +35,7 @@ class post(models.Model):
     # date =  models.DateField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User,on_delete= models.CASCADE)
-    # category_index = models.OneToOneField(Category)
+    category_index = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.title

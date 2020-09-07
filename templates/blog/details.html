@@ -85,12 +85,13 @@
                 <div class="post-meta d-flex justify-content-between">
                     
                     <!-- <div class="category">
-                    {% for cat in post.categories.all %}
-                        <a href="#">{{ cat }}</a>
+                    {% for cat in categories %}
+                        <a href="#">{{ post.categories }}</a>
                     {% endfor %}
                     </div> -->
                     <div>
                         <a  href= "{% url 'edit-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">EDIT POST</div></a><br>
+                        <!-- <a  href= "{% url 'delete-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">DELETE POST</div></a> -->
                         <hr>
                         <style>
                         .btn {
@@ -238,10 +239,11 @@
                               {% endif %}
                           </div>
                       <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
-                          <div class="d-flex align-items-center">
-                          <div class="views"><i class="icon-eye"></i>{{ post2.view_count }}</div>
-                          <div class="comments"><i class="icon-comment"></i>{{ post.comments.count }}</div>
-                          </div>
+                            <div class="d-flex align-items-center">
+                                <div class="views">{{post.date}}</div>
+                                <!-- <div class="views"><i class="icon-eye"></i>{{ post2.view_count }}</div> -->
+                                <div class="comments"><i class="icon-comment"></i>{{ post.comments.count }}</div>
+                            </div>
                       </div>
                       </div>
                       </a>

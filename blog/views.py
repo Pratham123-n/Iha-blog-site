@@ -44,6 +44,7 @@ class Postlistview(LoginRequiredMixin,ListView):
         context['categories'] = Category.objects.all()
         context['most_recent'] = post.objects.all().order_by('-date')[:3]
         context['category_count'] = post.objects.values('category__name').annotate(Count('category__name'))
+        context['categories_index'] = post.objects.all()
         return context
 
 
@@ -157,6 +158,12 @@ class Post_create_view(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
 #             return HttpResponse('welcome')
 #         else:
 #             return render(request,'blog/post.html',context={'form':form})
+
+def post_delete(request, slug):
+    # title = 'Update'
+    post1 = get_object_or_404(post,slug=slug)
+    post1.delete()
+    return redirect(reverse("post"))
 
 class post_update_view(LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin,UpdateView):
     login_url = 'login'
