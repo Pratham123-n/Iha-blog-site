@@ -1,0 +1,236 @@
+{% extends 'blog/base1.html' %}
+
+{% load static %}
+
+{% block content %}
+    
+    <header class="header">
+        <!-- Main Navbar-->
+        <nav class="navbar navbar-expand-lg">
+        <div class="search-area">
+            <div class="search-area-inner d-flex align-items-center justify-content-center">
+            <div class="close-btn"><i class="icon-close"></i></div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8">
+                
+                    <div class="form-group">
+                    <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
+                        <input type="search" name="search" placeholder="What are you looking for?">
+                        <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
+                    </form>
+                    </div>
+                
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Navbar Brand -->
+            <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+            </div>
+            <!-- Navbar Menu -->
+            <div id="navbarcollapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{% url 'post' %}" class="nav-link ">Blogs</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'contact1' %}" class="nav-link ">Contact us</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link ">Sign in</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}"><strong><em> &nbsp; &nbsp;Get Started</strong></em></a>
+                    </li>
+                </ul>
+            <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
+            <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
+            </div>
+        </div>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section-->
+    <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <h1>"Helping Companies to maximize their potential"</h1>
+          </div>
+        </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
+      </div>
+    </section>
+    <!-- Intro Section-->
+    <section class="intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="h3"><em>Iha Consulting Services helps clients reinvent their operating models to enhance productivity
+              and get competitive advancements in global markets.</em></h3>
+            <h5><em><br>Iha’s blog is a direct representation of a thought process for the company and as the content grows, it becomes an enabler to traffic, customer interaction and hence leads for our business. 
+              It also enables us to develop a customer first approach that will help us develop an appreciation of the challenges and force us to think harder on the problems we are looking to solve for our clients. A blog therefore is at the forefront of our online game and directly affects our SEO, discoverability and adds tremendous value to achieving our marketing goals. 
+              Iha's blog posts also give us the unique opportunity to engage our customers and enable a feedback loop on our ideas and prospects. We should be wary of the fact that our content may sometimes not be as engaging and therefore risks losing interest from potential and existing customers. This risk will push us to work harder to find engaging ideas, content and be relevant in the competitive landscape.
+              Iha being idea driven business, it is important to be focused on being able to articulate the value that our practices bring to specific issues. We want to transform ourselves into a forceful, proactive, forward-looking organisation to meet the aspirations of Indian MSMEs. 
+              Businesses operate in an ever changing landscape of technology and consumer demands.
+              Following are the categories in which we invite original and innovative articles for publishing in the blog that benefits in widening the knowledge of MSMEs in different business areas.</h5>
+              <p><br><strong>•	Business Intelligence</strong>
+              <br><strong>•	Technology & Innovation</strong> 
+              <br><strong>•	AI & Data driven solutions</strong>
+              <br><strong>•	Startup & Entrepreneurial Guidance</strong>
+              <br><strong>•	E commerce & Digital marketing</strong>
+              <br><strong>•	Funding and investments</strong>
+              <br><strong>•	Thought Leadership</strong>
+              <br><strong>•	Case Studies</strong></em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="featured-posts no-padding-top">
+      <div class="container">
+        <!-- Post-->
+        <div class="row d-flex align-items-stretch">
+          <div class="text col-lg-7">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <!-- <div class="category"><a href="#">Business</a><a href="#">Technology</a></div><a href="#"> -->
+                    <h2 class="h4">Strengthening Training Establishments</h2></a>
+                </header>
+                <p>In a career spanning 13 years, Iha has helped many training establishments to position themselves in particular field and thrive in horizontally and vertically.
+                  In an age where skill sets can become obsolete in just a few years, many workers are scrambling just to stay current. How can organizations encourage continuous learning, improve individual mobility, and foster a growth mind-set in every employee, year after year.</p>
+                <!-- <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                    <div class="avatar"><img src="{% static "img/avatar-1.jpg" %}" alt="..." class="img-fluid"></div>
+                    <div class="title"><span>John Doe</span></div></a>
+                  <div class="date"><i class="icon-clock"></i> 2 months ago</div>
+                  <div class="comments"><i class="icon-comment"></i>12</div>
+                </footer> -->
+              </div>
+            </div>
+          </div>
+          <div class="image col-lg-5"><img src="{% static "img/featured-pic-1.jpeg" %}" alt="..."></div>
+        </div>
+        <!-- Post        -->
+        <div class="row d-flex align-items-stretch">
+          <div class="image col-lg-5"><img src="{% static "img/featured-pic-2.jpeg" %}" alt="..."></div>
+          <div class="text col-lg-7">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <!-- <div class="category"><a href="#">Business</a><a href="#">Technology</a></div><a href="#"> -->
+                    <h2 class="h4">Financial Services</h2></a>
+                </header>
+                <p>We understand the needs of the client and our services are tailored to meet the requirements of the client best. Financial management being the back bone of any enterprise to sustain and be successful in having differentiating factor for their business in the market, it’s important to manage finance in a highly professional manner. Iha developed a full-fledged finance vertical that is cost effective and beneficial for small and medium sized forward-looking enterprises. Through this vertical, Iha extends end-to-end hand holding and seamless co-ordination and consultancy support to SMEs and the services include.</p>
+                <!-- <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                    <div class="avatar"><img src="{% static "img/avatar-2.jpg" %}" alt="..." class="img-fluid"></div>
+                    <div class="title"><span>John Doe</span></div></a>
+                  <div class="date"><i class="icon-clock"></i> 2 months ago</div>
+                  <div class="comments"><i class="icon-comment"></i>12</div>
+                </footer> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Post                            -->
+        <div class="row d-flex align-items-stretch">
+          <div class="text col-lg-7">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <!-- <div class="category"><a href="#">Business</a><a href="#">Technology</a></div><a href="#"> -->
+                    <h2 class="h4">Other Services</h2></a>
+                </header>
+                <p>1. Entrepreneurial Guidance: Services will be provided to both budding and existing entrepreneurs
+                  2. Business Development: Business Tie-ups, Growth Strategies, Overseas Outreach Assistance, Joint Ventures and Project Assistance.
+                  3. International Business Support: This is an essential service required for the SMEs in India.</p>
+                <!-- <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                    <div class="avatar"><img src="{% static "img/avatar-3.jpg" %}" alt="..." class="img-fluid"></div>
+                    <div class="title"><span>John Doe</span></div></a>
+                  <div class="date"><i class="icon-clock"></i> 2 months ago</div>
+                  <div class="comments"><i class="icon-comment"></i>12</div>
+                </footer> -->
+              </div>
+            </div>
+          </div>
+          <div class="image col-lg-5"><img src="{% static "img/featured-pic-3.jpeg" %}" alt="..."></div>
+        </div>
+      
+      </div>
+    </section>
+    <!-- Divider Section-->
+    <section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h2>Our professionals have extensive experience in the areas of technology and business management.</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Latest Posts -->
+    <section class="latest-posts"> 
+      <div class="container">
+        <header> 
+          <h2>Latest from the blog</h2>
+          <p class="text-big">Do see the latest blogs posted by our users...</p>
+        </header>
+        <div class="row">
+          {% for post in most_recent %}
+            <div class="post col-md-4">
+              <div class="post-thumbnail">
+                <!-- <a href="#">
+                  <img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid">
+                </a> -->
+                <a href="{{ post.get_absolute_url }}">
+                  {% if post.image %}
+                      <img src="{{ post.image.url }}" alt="..." class="img-fluid" style="height: 250px; width: 300px;">
+                  {% else %}
+                      <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 250px; width: 300px;">
+                  {% endif %}
+                </a>
+              </div>
+              <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                  <div class="date">{{ post.date }}</div>
+                  <div class="category">
+                    <!-- {% for cat in obj.categories.all %}
+                      <a href="#">{{ cat }}</a>
+                    {% endfor %} -->
+                  </div>
+                </div>
+                <a href="#">
+                  <h3 class="h4">{{post.title|truncatechars:20}}</h3>
+                </a>
+                <p class="text-muted">For more details about "{{post.title}}" post click to image we will redirect  you to deatils page of post.... </p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gallery Section-->
+    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our Clients<br></h2>
+    <section class="gallery no-padding">    
+      <div class="row">
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/3.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/3.png" alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+        </div>
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/4.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/4.png" alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+        </div>
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/5.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/5.png" alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+        </div>
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/6.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/6.png" alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+        </div>
+      </div>
+    </section>
+    
+{% endblock content %}

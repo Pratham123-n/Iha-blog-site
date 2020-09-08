@@ -1,236 +1,419 @@
-{% extends 'blog/base1.html' %}
-
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-    
-    <header class="header">
-        <!-- Main Navbar-->
-        <nav class="navbar navbar-expand-lg">
-        <div class="search-area">
-            <div class="search-area-inner d-flex align-items-center justify-content-center">
-            <div class="close-btn"><i class="icon-close"></i></div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-8">
-                
-                    <div class="form-group">
-                    <form name="Searchform" method="GET" action="{% url 'search' %}" class="search-form">
-                        <input type="search" name="search" placeholder="What are you looking for?">
-                        <button type="submit" class="submit"><i class="icon-search" value="search"></i></button>
-                    </form>
-                    </div>
-                
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="container">
-            <!-- Navbar Brand -->
-            <div class="navbar-header d-flex align-items-center justify-content-between">
-            <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
-            <!-- Toggle Button-->
-            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
-            </div>
-            <!-- Navbar Menu -->
-            <div id="navbarcollapse" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="{% url 'post' %}" class="nav-link ">Blogs</a>
-                    </li>
-                    <li class="nav-item"><a href="{% url 'contact1' %}" class="nav-link ">Contact us</a>
-                    </li>
-                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link ">Sign in</a>
-                    </li>
-                    <li  class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}"><strong><em> &nbsp; &nbsp;Get Started</strong></em></a>
-                    </li>
-                </ul>
-            <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
-            <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
-            </div>
-        </div>
-        </nav>
-    </header>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <title>Iha Blog</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <!-- Hero Section-->
-    <section style="background: url({% static 'img/hero.jpg' %}); background-size: cover; background-position: center center" class="hero">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7">
-            <h1>"Helping Companies to maximize their potential"</h1>
-          </div>
-        </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
-      </div>
-    </section>
-    <!-- Intro Section-->
-    <section class="intro">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3 class="h3"><em>Iha Consulting Services helps clients reinvent their operating models to enhance productivity
-              and get competitive advancements in global markets.</em></h3>
-            <h5><em><br>Iha’s blog is a direct representation of a thought process for the company and as the content grows, it becomes an enabler to traffic, customer interaction and hence leads for our business. 
-              It also enables us to develop a customer first approach that will help us develop an appreciation of the challenges and force us to think harder on the problems we are looking to solve for our clients. A blog therefore is at the forefront of our online game and directly affects our SEO, discoverability and adds tremendous value to achieving our marketing goals. 
-              Iha's blog posts also give us the unique opportunity to engage our customers and enable a feedback loop on our ideas and prospects. We should be wary of the fact that our content may sometimes not be as engaging and therefore risks losing interest from potential and existing customers. This risk will push us to work harder to find engaging ideas, content and be relevant in the competitive landscape.
-              Iha being idea driven business, it is important to be focused on being able to articulate the value that our practices bring to specific issues. We want to transform ourselves into a forceful, proactive, forward-looking organisation to meet the aspirations of Indian MSMEs. 
-              Businesses operate in an ever changing landscape of technology and consumer demands.
-              Following are the categories in which we invite original and innovative articles for publishing in the blog that benefits in widening the knowledge of MSMEs in different business areas.</h5>
-              <p><br><strong>•	Business Intelligence</strong>
-              <br><strong>•	Technology & Innovation</strong> 
-              <br><strong>•	AI & Data driven solutions</strong>
-              <br><strong>•	Startup & Entrepreneurial Guidance</strong>
-              <br><strong>•	E commerce & Digital marketing</strong>
-              <br><strong>•	Funding and investments</strong>
-              <br><strong>•	Thought Leadership</strong>
-              <br><strong>•	Case Studies</strong></em></p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="featured-posts no-padding-top">
-      <div class="container">
-        <!-- Post-->
-        <div class="row d-flex align-items-stretch">
-          <div class="text col-lg-7">
-            <div class="text-inner d-flex align-items-center">
-              <div class="content">
-                <header class="post-header">
-                  <!-- <div class="category"><a href="#">Business</a><a href="#">Technology</a></div><a href="#"> -->
-                    <h2 class="h4">Strengthening Training Establishments</h2></a>
-                </header>
-                <p>In a career spanning 13 years, Iha has helped many training establishments to position themselves in particular field and thrive in horizontally and vertically.
-                  In an age where skill sets can become obsolete in just a few years, many workers are scrambling just to stay current. How can organizations encourage continuous learning, improve individual mobility, and foster a growth mind-set in every employee, year after year.</p>
-                <!-- <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{% static "img/avatar-1.jpg" %}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>John Doe</span></div></a>
-                  <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </footer> -->
-              </div>
-            </div>
-          </div>
-          <div class="image col-lg-5"><img src="{% static "img/featured-pic-1.jpeg" %}" alt="..."></div>
-        </div>
-        <!-- Post        -->
-        <div class="row d-flex align-items-stretch">
-          <div class="image col-lg-5"><img src="{% static "img/featured-pic-2.jpeg" %}" alt="..."></div>
-          <div class="text col-lg-7">
-            <div class="text-inner d-flex align-items-center">
-              <div class="content">
-                <header class="post-header">
-                  <!-- <div class="category"><a href="#">Business</a><a href="#">Technology</a></div><a href="#"> -->
-                    <h2 class="h4">Financial Services</h2></a>
-                </header>
-                <p>We understand the needs of the client and our services are tailored to meet the requirements of the client best. Financial management being the back bone of any enterprise to sustain and be successful in having differentiating factor for their business in the market, it’s important to manage finance in a highly professional manner. Iha developed a full-fledged finance vertical that is cost effective and beneficial for small and medium sized forward-looking enterprises. Through this vertical, Iha extends end-to-end hand holding and seamless co-ordination and consultancy support to SMEs and the services include.</p>
-                <!-- <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{% static "img/avatar-2.jpg" %}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>John Doe</span></div></a>
-                  <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </footer> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Post                            -->
-        <div class="row d-flex align-items-stretch">
-          <div class="text col-lg-7">
-            <div class="text-inner d-flex align-items-center">
-              <div class="content">
-                <header class="post-header">
-                  <!-- <div class="category"><a href="#">Business</a><a href="#">Technology</a></div><a href="#"> -->
-                    <h2 class="h4">Other Services</h2></a>
-                </header>
-                <p>1. Entrepreneurial Guidance: Services will be provided to both budding and existing entrepreneurs
-                  2. Business Development: Business Tie-ups, Growth Strategies, Overseas Outreach Assistance, Joint Ventures and Project Assistance.
-                  3. International Business Support: This is an essential service required for the SMEs in India.</p>
-                <!-- <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{% static "img/avatar-3.jpg" %}" alt="..." class="img-fluid"></div>
-                    <div class="title"><span>John Doe</span></div></a>
-                  <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                  <div class="comments"><i class="icon-comment"></i>12</div>
-                </footer> -->
-              </div>
-            </div>
-          </div>
-          <div class="image col-lg-5"><img src="{% static "img/featured-pic-3.jpeg" %}" alt="..."></div>
-        </div>
-      
-      </div>
-    </section>
-    <!-- Divider Section-->
-    <section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7">
-            <h2>Our professionals have extensive experience in the areas of technology and business management.</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Latest Posts -->
-    <section class="latest-posts"> 
-      <div class="container">
-        <header> 
-          <h2>Latest from the blog</h2>
-          <p class="text-big">Do see the latest blogs posted by our users...</p>
-        </header>
-        <div class="row">
-          {% for post in most_recent %}
-            <div class="post col-md-4">
-              <div class="post-thumbnail">
-                <!-- <a href="#">
-                  <img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid">
-                </a> -->
-                <a href="{{ post.get_absolute_url }}">
-                  {% if post.image %}
-                      <img src="{{ post.image.url }}" alt="..." class="img-fluid" style="height: 250px; width: 300px;">
-                  {% else %}
-                      <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 250px; width: 300px;">
-                  {% endif %}
-                </a>
-              </div>
-              <div class="post-details">
-                <div class="post-meta d-flex justify-content-between">
-                  <div class="date">{{ post.date }}</div>
-                  <div class="category">
-                    <!-- {% for cat in obj.categories.all %}
-                      <a href="#">{{ cat }}</a>
-                    {% endfor %} -->
-                  </div>
-                </div>
-                <a href="#">
-                  <h3 class="h4">{{post.title|truncatechars:20}}</h3>
-                </a>
-                <p class="text-muted">For more details about "{{post.title}}" post click to image we will redirect  you to deatils page of post.... </p>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    
-    <!-- Gallery Section-->
-    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our Clients<br></h2>
-    <section class="gallery no-padding">    
+  <!-- Favicons -->
+  <!-- <link href="{% static "home/assets/img/favicon.png" %}" rel="icon"> -->
+  <!-- <link href="{% static "home/assets/img/apple-touch-icon.png" %}" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "home/assets/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "home/assets/vendor/icofont/icofont.min.css" %}" rel="stylesheet">
+  <link href="{% static "home/assets/vendor/boxicons/css/boxicons.min.css" %}" rel="stylesheet">
+  <link href="{% static "home/assets/vendor/remixicon/remixicon.css" %}" rel="stylesheet">
+  <link href="{% static "home/assets/vendor/venobox/venobox.css" %}" rel="stylesheet">
+  <link href="{% static "home/assets/vendor/owl.carousel/assets/owl.carousel.min.css" %}" rel="stylesheet">
+  <link href="{% static "home/assets/vendor/aos/aos.css" %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static "home/assets/css/style.css" %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="/">Iha Blog</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="{% url 'post' %}">Blogs</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+      <a href="{% url 'login' %}" class="get-started-btn scrollto">Sign Up</a>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
       <div class="row">
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/3.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/3.png" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>Better Solutions For Your Business</h1>
+          <h2>Our professionals have extensive experience in the areas of technology and business management.</h2>
+          <div class="d-lg-flex">
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a> -->
+          </div>
         </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/4.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/4.png" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/5.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/5.png" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
-        </div>
-        <div class="mix col-lg-3 col-md-3 col-sm-6">
-          <div class="item"><a href="https://www.ihaconsulting.in/images/clients/6.png" data-fancybox="gallery" class="image"><img src="https://www.ihaconsulting.in/images/clients/6.png" alt="..." class="img-fluid">
-              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div></a></div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{% static "home/assets/img/hero-img.png" %}" class="img-fluid animated" alt="">
         </div>
       </div>
-    </section>
-    
-{% endblock content %}
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Cliens Section ======= -->
+    <section id="cliens" class="cliens section-bg">
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in">
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="https://www.ihaconsulting.in/images/clients/4.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="https://www.ihaconsulting.in/images/clients/8.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="https://www.ihaconsulting.in/images/clients/9.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="https://www.ihaconsulting.in/images/clients/10.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="https://www.ihaconsulting.in/images/clients/1.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="https://www.ihaconsulting.in/images/clients/2.png" class="img-fluid" alt="">
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Cliens Section -->
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>About Us</h2>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6">
+            <p>
+              Iha’s blog is a direct representation of a thought process for the company and as the content grows, it becomes an enabler to traffic, customer interaction and hence leads for our business.
+              Following are the categories in which we invite original and innovative articles for publishing in the blog that benefits in widening the knowledge of MSMEs in different business areas.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Business Intelligence</li>
+              <li><i class="ri-check-double-line"></i> Technology & Innovation</li>
+              <li><i class="ri-check-double-line"></i> AI & Data driven solutions</li>
+              <li><i class="ri-check-double-line"></i> Startup & Entrepreneurial Guidance</li>
+              <li><i class="ri-check-double-line"></i> E-commerce & Digital marketing</li>
+              <li><i class="ri-check-double-line"></i> Funding & investments</li>
+              <li><i class="ri-check-double-line"></i> Thought Leadership</li>
+              <li><i class="ri-check-double-line"></i> Case Studies</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <p>
+              It also enables us to develop a customer first approach that will help us develop an appreciation of the challenges and force us to think harder on the problems we are looking to solve for our clients. A blog therefore is at the forefront of our online game and directly affects our SEO, discoverability and adds tremendous value to achieving our marketing goals. Iha's blog posts also give us the unique opportunity to engage our customers and enable a feedback loop on our ideas and prospects. We should be wary of the fact that our content may sometimes not be as engaging and therefore risks losing interest from potential and existing customers. This risk will push us to work harder to find engaging ideas, content and be relevant in the competitive landscape. Iha being idea driven business, it is important to be focused on being able to articulate the value that our practices bring to specific issues. We want to transform ourselves into a forceful, proactive, forward-looking organisation to meet the aspirations of Indian MSMEs. Businesses operate in an ever changing landscape of technology and consumer demands.
+            </p>
+            <!-- <a href="#" class="btn-learn-more">Learn More</a> -->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>HELPING COMPANIES TO MAXIMIZE THEIR POTENTIAL</p>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4><a href="">Strengthening training establishments</a></h4>
+              <p>In a career spanning 13 years, Iha has helped many training establishments to position themselves in particular field and thrive in horizontally and vertically.</p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4><a href="">Financial Services</a></h4>
+              <p>We understand the needs of the client and our services are tailored to meet the requirements of the client best.</p>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4><a href="">Others</a></h4>
+              <p>1. Entrepreneurial Guidance
+              2. Business development
+              3. International Business Support
+              4. Business strategies
+              5. Turnaround solutions
+              6. Mergers and Acquisitions
+              7. Technology Transfers</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="row">
+          <div class="col-lg-9 text-center text-lg-left">
+            <h3>Call To Action</h3>
+            <p> Working Hours : 
+              Mon - Saturday: 09.00 AM To 6.00 PM</p>
+          </div>
+          <div class="col-lg-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#contact">Call To Action</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Team</h2>
+          <p>Committed to the service of SMEs</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="{% static "home/assets/img/team/team-1.jpg" %}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Suprath S</h4>
+                <span>Sales & Marketing and Branding</span>
+                <p>A graduate of the prestigious IIM Kozhikode with experience in Sales & Marketing and Branding. He is an expert on connecting Businesses and developing Strategic Alliances.</p>
+                <!-- <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="200">
+              <div class="pic"><img src="{% static "home/assets/img/team/team-2.jpg" %}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Sita Devi</h4>
+                <span>Management & Networking Specialist</span>
+                <p>Knowledge management & Networking Specialist having over 20 years of experience of handling training assignments related to training, rural higher education, IT etc.</p>
+                <!-- <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>We are working with business entities around the world & delivering the best ideas for your business success</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>Iha Consulting Services Pvt. Ltd.
+                  1-8-450/A9, Ground Floor
+                  Indian Airlines Colony
+                  Begumpet, Patigadda
+                  Hyderabad - 500016.
+                  Telangana.
+                </p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>Info@Ihaconsulting.In</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>040-48538611,
+                  040-48538711</p>
+              </div>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.468467909769!2d78.44208131487702!3d17.437277988048734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb90c580b41461%3A0x64770ddab577ae04!2sIha+Consulting+Services+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1544617142831" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+              <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe> -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <!-- <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Iha Blog</h3>
+            <p>
+              Iha Consulting Services Pvt. Ltd. 1-8-450/A9, Ground Floor Indian Airlines Colony Begumpet, Patigadda Hyderabad - 500016. Telangana.<br><br>
+              <strong>Phone:</strong> 040-48538611, 040-48538711<br>
+              <strong>Email:</strong> Info@Ihaconsulting.In<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
+              <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li> -->
+              <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Business Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Financial Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Entrepreneurial Guidance</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Mergers and Acquisitions </a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Technology Transfers</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">International Business Support </a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <!-- <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p> -->
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        <!-- &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved -->
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static "home/assets/vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/jquery.easing/jquery.easing.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "home/assets/vendor/waypoints/jquery.waypoints.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/venobox/venobox.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/owl.carousel/owl.carousel.min.js" %}"></script>
+  <script src="{% static "home/assets/vendor/aos/aos.js" %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static "home/assets/js/main.js" %}"></script>
+
+</body>
+
+</html>
