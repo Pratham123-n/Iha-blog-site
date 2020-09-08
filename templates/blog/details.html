@@ -70,93 +70,86 @@
         <main class="post blog-post col-lg-8"> 
             <div class="container">
             <div class="post-single">
-
-                <div class="post-thumbnail">
-                    {% if posts.image %}   
-                        <img src="{{ posts.image.url }}" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
-                    {% else %}
-                        <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
-                        <!-- <img class= "cardimg" src= "http://127.0.0.1:8000/media/blog/post/WhatsApp_Image_2019-06-19_at_17.55.10.jpeg"/> -->
-                    {% endif %}
-                    
-                </div>
-
-                <div class="post-details">
-                <div class="post-meta d-flex justify-content-between">
-                    
-                    <!-- <div class="category">
-                    {% for cat in categories %}
-                        <a href="#">{{ post.categories }}</a>
-                    {% endfor %}
-                    </div> -->
-                    <div>
-                        <a  href= "{% url 'edit-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">EDIT POST</div></a><br>
-                        <!-- <a  href= "{% url 'delete-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">DELETE POST</div></a> -->
-                        <hr>
+                    <div class="post-details ex2">
                         <style>
-                        .btn {
-                            background-color: #ddd;
-                            border: none;
-                            color: black;
-                            padding: 16px 32px;
-                            text-align: center;
-                            font-size: 16px;
-                            margin: 4px 2px;
-                            transition: 0.3s;
-                        }
-                        
-                        .btn:hover {
-                            background-color: #3e8e41;
-                            color: white;
-                        }
+                            div.ex2 { 
+                                height: 650px;
+                                overflow: scroll;
+                            }
                         </style>
-                    </div>
-                    
-                </div>
-                <h1>{{ posts.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
-                <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar">
-                        {% if posts.author.profile.image %}
-                            <img src="{{ posts.author.profile.image.url }}" alt="user image" class="img-fluid">
-                        {% else %}
-                            <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt="user image" class="img-fluid">
-                        {% endif %}
-                    </div>
-                    
-                    <div class="title"><span>{{posts.author}}</span></div></a>
-                    <div class="d-flex align-items-center flex-wrap">       
-                    <div class="date"><i class="icon-clock"></i>{{ posts.date|timesince }} ago</div>
-                    <!-- <div class="views"><i class="icon-eye"></i>{{ post.view_count }}</div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div> -->
-                    </div>
-                </div>
-                <div class="post-body">
-                    {{ posts.content|safe }}
-                </div>
-                
-                <!-- <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
-                    
-                    {% if post.previous_post %}
-                    <a href="{{ post.previous_post.get_absolute_url }}" class="prev-post text-left d-flex align-items-center">
-                        <div class="icon prev"><i class="fa fa-angle-left"></i></div>
-                        <div class="text"><strong class="text-primary">Previous Post </strong>
-                        <h6>{{ post.previous_post.title }}</h6>
+                        <div class="post-thumbnail">
+                            {% if posts.image %}   
+                                <img src="{{ posts.image.url }}" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
+                            {% else %}
+                                <img src="https://www.yourdictionary.com/images/definitions/lg/6267.information.jpg" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
+                                <!-- <img class= "cardimg" src= "http://127.0.0.1:8000/media/blog/post/WhatsApp_Image_2019-06-19_at_17.55.10.jpeg"/> -->
+                            {% endif %}
+                            
                         </div>
-                    </a>
-                    {% endif %}
-                    {% if post.next_post %}
-                    <a href="{{ post.next_post.get_absolute_url }}" class="next-post text-right d-flex align-items-center justify-content-end">
-                        <div class="text"><strong class="text-primary">Next Post </strong>
-                        <h6>{{ post.next_post.title }}</h6>
-                        </div>
-                        <div class="icon next"><i class="fa fa-angle-right">   </i></div>
-                    </a>
-                    {% endif %}
 
-                </div> -->
-                <div class="post-comments">
+                    
+                        <div class="post-meta d-flex justify-content-between">
+                            <!-- <div class="category">
+                            {% for cat in categories %}
+                                <a href="#">{{ post.categories }}</a>
+                            {% endfor %}
+                            </div> -->
+                            <div>
+                                <a  href= "{% url 'edit-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">EDIT POST</div></a><br>
+                                <!-- <a  href= "{% url 'delete-post' posts.slug %}" style='text-decoration: none;'><div class= "btn">DELETE POST</div></a> -->
+                                <hr>
+                                <style>
+                                .btn {
+                                    background-color: #ddd;
+                                    border: none;
+                                    color: black;
+                                    padding: 16px 32px;
+                                    text-align: center;
+                                    font-size: 16px;
+                                    margin: 4px 2px;
+                                    transition: 0.3s;
+                                }
+                                
+                                .btn:hover {
+                                    background-color: #3e8e41;
+                                    color: white;
+                                }
+                                </style>
+                            </div>
+                            
+                        </div>
+                        <h1>{{ posts.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                        
+                        <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                            <div class="avatar">
+                                {% if posts.author.profile.image %}
+                                    <img src="{{ posts.author.profile.image.url }}" alt="user image" class="img-fluid">
+                                {% else %}
+                                    <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt="user image" class="img-fluid">
+                                {% endif %}
+                            </div>
+                            
+                            <div class="title"><span>{{posts.author}}</span></div></a>
+                            <div class="d-flex align-items-center flex-wrap">       
+                            <div class="date"><i class="icon-clock"></i>{{ posts.date|timesince }} ago</div>
+                            <div class="date"><i class="icon-comment"></i>{{ posts.comments.count }}</div>
+                            <!-- <div class="views"><i class="icon-eye"></i>{{ post.view_count }}</div>
+                            <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div> -->
+                            </div>
+                        </div>
+                        <div class="post-body">
+                            {{ posts.content|safe }}
+                        </div>
+                    </div>
+                <div class="post-comments ex1">
+                    <style>
+                        div.ex1 { 
+                            height: 300px;
+                            overflow: scroll;
+                        }
+                    </style>
                     <header>
-                    <h3 class="h6">Post Comments<span class="no-of-comments">[{{ posts.comments.count }}]</span></h3>
+                        <h3 class="h6">Post Comments<span class="no-of-comments">[{{ posts.comments.count }}]</span></h3>
                     </header>
                     {% for comment in posts.get_comments %}
                         <div class="comment">
@@ -198,7 +191,7 @@
                 {% else %}
                     <a href="{% url 'account_login' %}" class="btn btn-primary">Login to comment</a>
                 {% endif %}
-                </div>
+                
             </div>
             </div>
         </main>

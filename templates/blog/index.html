@@ -82,7 +82,7 @@
 
                       <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
-                            <div class="date meta-last">{{ post.date }}</div>
+                            <div class="date meta-last">{{ post.date }} &nbsp;&nbsp;<i class="icon-comment"></i>{{ post.comments.count }}</div>
                             <div class="category">
                               {% for cat in post.categories_index.all %}
                                 <a href="#">{{ cat }}</a>
