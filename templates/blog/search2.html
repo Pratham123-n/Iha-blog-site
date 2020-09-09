@@ -34,22 +34,33 @@
         <!-- Navbar Menu -->
         <div id="navbarcollapse" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+                <a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
+              {% else %}
+                <a href="{% url 'login' %}" class="nav-link ">Create Post</a>
+              {% endif %}
             </li>
             <li class="nav-item"><a href="{% url 'post' %}" class="nav-link ">Blogs</a>
             </li>
-            <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link ">My Profile</a>
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="nav-link ">My Profile</a>
+              {% endif %}
             </li>
             <li  class="nav-item">
               {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="nav-link ">Logout </a>
+                <li  class="nav-item">
+                  <a class="nav-link "><strong><em> &nbsp; &nbsp; Welcome :  {{ user.get_username }}</strong></em></a>
+                </li>
               {% else %}
                 <a href="{% url 'login' %}" class="nav-link ">Login</a>
+                <li  class="nav-item">
+                  <a href="{% url 'signup' %}" class="nav-link">Sign Up</a>
+                </li>
               {% endif %}
-            </li>
-            <li  class="nav-item">
-              <a class="nav-link "><strong><em> &nbsp; &nbsp; Welcome :  {{ user.get_username }}</strong></em></a>
-            </li>
+            </li> 
           </ul>
           <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
           <!-- <ul class="langs navbar-text"><a href="#" class="active">EN</a><span>           </span><a href="#">ES</a></ul> -->
@@ -103,10 +114,10 @@
 
                       <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
-                            <div class="date meta-last">{{ post.date }}</div>
-                            <div class="category">
+                            <div class="date meta-last">{{ post.date }} &nbsp;&nbsp;<i class="icon-comment"></i>{{ post.comments.count }}<br><strong>{{ post.category }}</strong></div>
+                            <!-- <div class="category">
                               
-                            </div>
+                            </div> -->
                         </div>
                         <a href="{{ post.get_absolute_url }}">
                             <h3 class="h4">{{post.title|truncatechars:20}}</h3>

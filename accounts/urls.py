@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path,include
-from accounts.views import Signup_create_view,HomePageView,ProfileUpdateView,ProfileView
+from accounts.views import Signup_create_view,ProfileUpdateView,ProfileView
 from django.contrib.auth.views import LoginView,PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView
 from django.contrib.auth.views import PasswordChangeView,PasswordChangeDoneView,PasswordResetCompleteView,LogoutView
+from accounts.views import Postlistview
 urlpatterns = [
-    path('',HomePageView.as_view(),name= 'home'),
+    path('',Postlistview.as_view(),name= 'home'),
     path('login/',LoginView.as_view(template_name= 'account/login.html'), name='login'),
     path('logout/',LogoutView.as_view(template_name= 'account/logout.html'), name='logout'),
     path('profile', ProfileView.as_view(), name='profile'),

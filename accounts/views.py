@@ -7,6 +7,9 @@ from accounts.forms import UserEditForm,ProfileEditForm
 from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 from blog.models import post
+from django.views.generic import ListView
+from blog.models import Category
+from django.db.models import Count
 
 # Create your views here.
 class Signup_create_view(CreateView):
@@ -14,14 +17,32 @@ class Signup_create_view(CreateView):
     template_name = 'account/signup.html'
     success_url = '/blog'
 
-class HomePageView(TemplateView):
-    template_name = 'account/home.html'
+
+# class HomePageView(TemplateView):
+#     template_name = 'account/home.html'
+#     model = post
+#     context_object_name = 'posts'
+
+#     def get_context_data(self,**kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['most_recent'] = post.objects.all().order_by('-date')[:3]
+#         return context
+
+class Postlistview(ListView):
+    # login_url = 'login'
     model = post
+    queryset = post.objects.filter(status="P").order_by('-date')
+    # most_recent = post.objects.order_by('-date')[:3]
+    paginate_by = 6
+    template_name = 'blog/index.html'
     context_object_name = 'posts'
 
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
         context['most_recent'] = post.objects.all().order_by('-date')[:3]
+        context['category_count'] = post.objects.values('category__name').annotate(Count('category__name'))
+        context['categories_index'] = post.objects.all()
         return context
 
 class ProfileView(LoginRequiredMixin, TemplateView):

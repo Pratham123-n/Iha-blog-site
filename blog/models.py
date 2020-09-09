@@ -22,6 +22,10 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super().save(*args,**kwargs)
 
+class Blog(models.Model):
+    #fields you need
+    blog_views=models.IntegerField(default=0)
+
 class post(models.Model):
     statuses = [('P','Published')]
     title = models.CharField(max_length=70)

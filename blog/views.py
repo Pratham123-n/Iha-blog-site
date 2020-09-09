@@ -5,6 +5,7 @@ from blog.forms import Contactform,Postform,Searchform,CommentForm
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
 from blog.models import Category
 from accounts.models import User
+from blog.models import Blog
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
 from django.core.mail import send_mail
 from django.conf import settings
@@ -30,8 +31,8 @@ def get_category_count():
     queryset = post.objects.values('category__name').annotate(Count('category__name'))
     return queryset
 
-class Postlistview(LoginRequiredMixin,ListView):
-    login_url = 'login'
+class Postlistview(ListView):
+    # login_url = 'login'
     model = post
     queryset = post.objects.filter(status="P").order_by('-date')
     # most_recent = post.objects.order_by('-date')[:3]
@@ -44,7 +45,7 @@ class Postlistview(LoginRequiredMixin,ListView):
         context['categories'] = Category.objects.all()
         context['most_recent'] = post.objects.all().order_by('-date')[:3]
         context['category_count'] = post.objects.values('category__name').annotate(Count('category__name'))
-        context['categories_index'] = post.objects.all()
+        # context['categories_index'] = post.objects.all()
         return context
 
 
@@ -71,7 +72,9 @@ def post_detail(request,slug,*args,**kwargs):
     most_recent = post.objects.all().order_by('-date')[:3]
     post2 = get_object_or_404(post,slug=slug)
     categories = Category.objects.all()
-
+    # blog_object=Blog.objects.get(slug=slug)
+    # blog_object.blog_views=blog_object.blog_views+1
+    # blog_object.save()
     form = CommentForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
@@ -87,6 +90,7 @@ def post_detail(request,slug,*args,**kwargs):
         'category_count':category_count,
         'categories':categories,
         'form':form,
+        # 'blog_object':view_count,
     }
     return render(request,'blog/details.html',context)
 
