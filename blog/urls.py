@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     # path('', index),
     path('', Postlistview.as_view(),name= 'post'),
+    path('about/',views.about,name='about'),
     # path('<int:id>',post_details),
     # path('contact',contact_view),
     # path('contact',Contact_form_view.as_view(),name = 'contact'),
@@ -24,5 +25,5 @@ urlpatterns = [
     # path('<slug:slug>',Postdetailview.as_view(), name= 'detail-page'),
     path('<slug:slug>/',views.post_detail, name= 'detail-page'),
     path('logout/',LogoutView.as_view(template_name= 'account/logout.html'), name='logout'),
-    # url(r'^user/(?P<username>[\w-]+)/$', views.user_articles, name="user_articles"),
+    path('user/<username>', views.user_articles, name='user_articles'),
 ]

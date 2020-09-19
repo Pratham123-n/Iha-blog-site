@@ -27,13 +27,14 @@
       <div class="container">
         <!-- Navbar Brand -->
         <div class="navbar-header d-flex align-items-center justify-content-between">
-          <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
+          <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services Pvt. Ltd</a>
           <!-- Toggle Button-->
           <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
         </div>
         <!-- Navbar Menu -->
         <div id="navbarcollapse" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link ">About</a>
             <li class="nav-item">
               {% if user.is_authenticated %}
                 <a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
@@ -99,7 +100,7 @@
           <div class="row">
               
             <!-- post -->
-                {% for post in posts %}
+                {% for post in articles %}
                   <div class="post col-xl-6">
                     <div class="post-thumbnail">
                         <a href="{{ post.get_absolute_url }}">
@@ -114,7 +115,7 @@
 
                       <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
-                            <div class="date meta-last">{{ post.date }} &nbsp;&nbsp;<i class="icon-comment"></i>{{ post.comments.count }}<br><strong>{{ post.category }}</strong></div>
+                            <div class="date meta-last">{{ post.date }} &nbsp;&nbsp;<i class="icon-comment"></i>{{ post.comments.count }} &nbsp;&nbsp;<i class="icon-eye"></i>{{ post.blog_views }}<br><strong>{{ post.category }}</strong></div>
                             <!-- <div class="category">
                               
                             </div> -->
@@ -143,14 +144,8 @@
           </div>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation example">
+            <!-- <nav aria-label="Page navigation example">
               <ul class="pagination pagination-template d-flex justify-content-center">
-
-                <!-- <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
-                <li class="page-item"><a href="#" class="page-link active">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li> -->
                 {% if posts.has_previous %}
                 <li class="page-item"><a href="?{{ page_request_var }}={{ posts.previous_page_number }}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
                 {% endif %}
@@ -160,7 +155,7 @@
                 {% endif %}
 
               </ul>
-            </nav>
+            </nav> -->
         </div>
         </main>
         <aside class="col-lg-4">
@@ -186,7 +181,7 @@
           <!-- Widget [Latest Posts Widget]        -->
           <div class="widget latest-posts">
             <header>
-              <h3 class="h6">Latest Posts(search)</h3>
+              <h3 class="h6">Latest Posts(articles)</h3>
             </header>
             <div class="blog-posts">
                 {% for post in most_recent %}
@@ -201,9 +196,9 @@
                         </div>
                     <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
                         <div class="d-flex align-items-center">
-                          <div class="views">{{post.date}}</div>
-                          <!-- <div class="views"><i class="icon-eye"></i>{{ post2.view_count }}</div> -->
+                          <div class="views"><i class="icon-eye"></i>{{ post.blog_views }}</div>
                           <div class="comments"><i class="icon-comment"></i>{{ post.comments.count }}</div>
+                          <!-- <div class="views"><i class="icon-eye"></i>{{ post.blog_views }}</div> -->
                         </div>
                     </div>
                     </div>
@@ -222,11 +217,6 @@
               {% for cat in categories %}
                 <li class="list-inline-item"><a href="{% url 'cat-page' cat.slug %}" class="tag">#{{ cat.name }}</a></li>
               {% endfor %}
-              <!-- <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
-              <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li> -->
             </ul>
           </div>
 

@@ -27,13 +27,14 @@
       <div class="container">
         <!-- Navbar Brand -->
         <div class="navbar-header d-flex align-items-center justify-content-between">
-          <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services</a>
+          <!-- Navbar Brand --><a href="/" class="navbar-brand">Iha Consulting Services Pvt. Ltd</a>
           <!-- Toggle Button-->
           <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
         </div>
         <!-- Navbar Menu -->
         <div id="navbarcollapse" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link ">About</a>
             <li class="nav-item">
               {% if user.is_authenticated %}
                 <a href="{% url 'create-post' %}" class="nav-link ">Create Post</a>
@@ -123,7 +124,7 @@
                             <h3 class="h4">{{post.title|truncatechars:20}}</h3>
                         </a>
                         <p class="text-muted">For more details about "{{post.title}}" post click to image we will redirect  you to deatils page of post....  </p>
-                        <div class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
+                        <div class="post-footer d-flex align-items-center"><a href="{% url 'user_articles' post.author.username %}" class="author d-flex align-items-center flex-wrap">
                             
                             <div class="avatar">
                                 {% if post.author.profile.image %}
@@ -201,7 +202,7 @@
                         </div>
                     <div class="title"><strong>{{post.title|truncatechars:20}}</strong>
                         <div class="d-flex align-items-center">
-                          <div class="views">{{post.date}}</div>
+                          <div class="views"><i class="icon-eye"></i>{{ post.blog_views }}</div>
                           <!-- <div class="views"><i class="icon-eye"></i>{{ post2.view_count }}</div> -->
                           <div class="comments"><i class="icon-comment"></i>{{ post.comments.count }}</div>
                         </div>
