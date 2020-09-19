@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from blog.models import post
 from blog.forms import Contactform,Postform,Searchform,CommentForm
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
-from blog.models import Category
+from blog.models import Category,PostView
 from accounts.models import User
 from blog.models import Blog
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
@@ -72,9 +72,13 @@ def post_detail(request,slug,*args,**kwargs):
     most_recent = post.objects.all().order_by('-date')[:3]
     post2 = get_object_or_404(post,slug=slug)
     categories = Category.objects.all()
-    # blog_object=Blog.objects.get(slug=slug)
-    # blog_object.blog_views=blog_object.blog_views+1
-    # blog_object.save()
+
+    blog_object=post.objects.get(slug=slug)
+    blog_object.blog_views=blog_object.blog_views+1
+    blog_object.save()
+
+    # if request.user.is_authenticated:
+    #     PostView.objects.get_or_create(user=request.user,post2=post)
     form = CommentForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
@@ -90,7 +94,7 @@ def post_detail(request,slug,*args,**kwargs):
         'category_count':category_count,
         'categories':categories,
         'form':form,
-        # 'blog_object':view_count,
+        'blog_object':blog_object,
     }
     return render(request,'blog/details.html',context)
 
@@ -241,6 +245,33 @@ def specific_cat_list_view(request,slug,*args,**kwargs):
     else:
         posts1 = post.objects.all()
         return render(request,'blog/search.html',context)
+
+# def user_articles(request, username):
+#     articles = post.objects.filter(author__username=username).order_by('-date')
+#     posts = articles.posts.all()
+#     paginator = Paginator(posts,6)
+#     page_request_var = 'page'
+#     page = request.GET.get(page_request_var)
+#     category_count = post.objects.values('category__name').annotate(Count('category__name'))
+#     try:
+#         paginated_queryset = paginator.page(page)
+#     except PageNotAnInteger:
+#         paginated_queryset = paginator.page(1)
+#     except EmptyPage:
+#         paginated_queryset = paginator.page(paginator.num_pages)
+
+#     context = {
+#         'categories':Category.objects.all(),
+#         'most_recent':post.objects.all().order_by('-date')[:3],
+#         'posts':paginated_queryset,
+#         'page_request_var':page_request_var,
+#         'category_count':category_count,
+#     }
+#     if posts:
+#         return render(request,'blog/article_list.html',context)
+#     else:
+#         posts1 = post.objects.all()
+#         return render(request,'blog/article_list.html',context)
 
 def contact_mail(request):
     if request.method == 'POST':

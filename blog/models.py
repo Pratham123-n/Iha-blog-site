@@ -25,6 +25,14 @@ class Category(models.Model):
 class Blog(models.Model):
     #fields you need
     blog_views=models.IntegerField(default=0)
+    # slug = models.SlugField(unique=True, blank=True)
+
+class PostView(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post2 = models.ForeignKey('post', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
 
 class post(models.Model):
     statuses = [('P','Published')]
@@ -33,6 +41,8 @@ class post(models.Model):
     content = RichTextField(blank=True,null=True)
     # content = HTMLField()
     # content = models.CharField(max_length=7000)
+    blog_views = models.IntegerField(default=0)
+    viewed = models.IntegerField(default=0)
     status = models.CharField(max_length=1,choices=statuses)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name='posts')
     image = models.ImageField(upload_to= "blog/post",blank = True)
@@ -68,11 +78,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.user.username
 
-class PostView(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post2 = models.ForeignKey('post', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.user.username
    
     

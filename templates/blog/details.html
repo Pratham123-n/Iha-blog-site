@@ -81,13 +81,7 @@
         <main class="post blog-post col-lg-8"> 
             <div class="container">
             <div class="post-single">
-                    <div class="post-details ex2">
-                        <style>
-                            div.ex2 { 
-                                height: 800px;
-                                overflow: scroll;
-                            }
-                        </style>
+                    
                         <div class="post-thumbnail">
                             {% if posts.image %}   
                                 <img src="{{ posts.image.url }}" alt="..." class="img-fluid" style="height: 350px; width: 400px;">
@@ -144,16 +138,16 @@
                             <div class="d-flex align-items-center flex-wrap">       
                             <div class="date"><i class="icon-clock"></i>{{ posts.date|timesince }} ago</div>
                             <div class="date"><i class="icon-comment"></i>{{ posts.comments.count }}</div>
-                            <!-- <div class="date"><i class="icon-comment"></i>{{ posts.view_count }}</div> -->
-                            <div class="date">{{ posts.category }}</div>
-                            <!-- <div class="views"><i class="icon-eye"></i>{{ post.view_count }}</div>
-                            <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div> -->
+                            <div class="date"><i class="icon-eye"></i>{{ blog_object.blog_views }}</div>
+                            <div class="date"><a href="#">{{ posts.category }}</a></div>
+                            <!-- <div class="views"><i class="icon-eye"></i>{{ posts.view_count }}</div> -->
+                            <!-- <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div> -->
                             </div>
                         </div>
                         <div class="post-body">
                             {{ posts.content|safe }}
                         </div>
-                    </div>
+                    
                 <div class="post-comments ex1">
                     <style>
                         div.ex1 { 
