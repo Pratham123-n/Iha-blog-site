@@ -273,7 +273,7 @@ def contact_mail(request):
         send_mail('Approval Request (IHA Blog site)',
         message,
         settings.EMAIL_HOST_USER,
-        ['nagareprathamesh07@gmail.com',email],
+        ['ihablog3@gmail.com',email],
         fail_silently=False)
 
     return render(request,'blog/contact1.html')
